@@ -1,0 +1,25 @@
+body {
+    font-size: 30px;
+}
+
+header.test_name {
+    font-size: 80px;
+}
+
+header.section {
+    padding-top: 30px;
+    font-size: 30px;
+    text-decoration: underline;
+}
+
+.desc {
+    font-size: 30px;
+}
+
+ul.conditions {
+    font-size: 22px;
+}
+
+.variables {
+    font-size: 20px;
+}

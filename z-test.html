@@ -1,0 +1,34 @@
+
+<title>Z-Test</title>
+<link rel="stylesheet" href="style.css">
+<html>
+
+<body>
+    <header class="test_name">one-sample z-test for a population proportion</header>
+    <div class="desc">this test is for a single categorical variable testing for a population proportion.</div>
+    <header class="section">Conditions</header>
+    <ul class="conditions">
+        <li>Data should be from random sample</li>
+        <li>If sampling without replacement: 10n &le; N, where n is sample size and N is population size</li>
+        <li>Sampling distribution of sample proportion is approximately normal: np<sub>0</sub> &ge; 10 and n(1-p<sub>0</sub>) &ge; 10, where p<sub>0</sub> is the true population proportion and assuming p = p<sub>0</sub>, </li>
+    </ul>
+    <header class="section">Variables</header>
+    <div class="variables">
+        null hypothesis: &mu;<sub>0</sub> = <input type="number" id="hyp"> <br />
+        standard deviation: &sigma; = <input type="number" id="sd"> <br />
+        mean: x&#772 = <input type="number" id="mean"> <br />
+        sample size: n = <input type="number" id="size"> <br />
+        alternative hypothesis: &mu;<sub>a</sub>
+        <input type="radio" name="ah" id="alt_hyp" value="ne">&ne; &mu;<sub>0</sub>
+        <input type="radio" name="ah" id="alt_hyp" value="lt">&lt; &mu;<sub>0</sub>
+        <input type="radio" name="ah" id="alt_hyp" value="gt">&gt; &mu;<sub>0</sub> <br /><br />
+
+        <button style="font-size:20px;width:100px">Enter</button>
+    </div>
+    <header class="section">Output</header>
+    <div class="output">
+
+    </div>
+</body>
+
+</html>
