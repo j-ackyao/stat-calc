@@ -1,6 +1,8 @@
 
 <title>Z-Test</title>
 <link rel="stylesheet" href="style.css">
+<script src="functions/ztest.js"></script>
+<script src="functions/statfuncs.js"></script>
 <html>
 
 <body>
@@ -16,17 +18,20 @@
     <div class="variables">
         null hypothesis: &mu;<sub>0</sub> = <input type="number" id="hyp"> <br />
         standard deviation: &sigma; = <input type="number" id="sd"> <br />
-        mean: x&#772 = <input type="number" id="mean"> <br />
+        sample mean: x&#772 = <input type="number" id="mean"> <br />
         sample size: n = <input type="number" id="size"> <br />
         alternative hypothesis: &mu;<sub>a</sub>
         <input type="radio" name="ah" id="alt_hyp" value="ne">&ne; &mu;<sub>0</sub>
         <input type="radio" name="ah" id="alt_hyp" value="lt">&lt; &mu;<sub>0</sub>
         <input type="radio" name="ah" id="alt_hyp" value="gt">&gt; &mu;<sub>0</sub> <br /><br />
 
-        <button style="font-size:20px;width:100px">Enter</button>
+        <button style="font-size:20px;width:100px" onclick="ztest()">Enter</button>
     </div>
     <header class="section">Output</header>
     <div class="output">
+        test statistic: z = <a id="teststat"></a> <br />
+        p-value: p = <a id="pvalue"></a> <br />
+        <div class="warning" id="warning"></div>
 
     </div>
 </body>

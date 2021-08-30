@@ -23,3 +23,13 @@ ul.conditions {
 .variables {
     font-size: 20px;
 }
+
+.output {
+    font-size: 24px;
+}
+
+.warning {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(255, 106, 0);
+}
