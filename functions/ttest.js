@@ -29,11 +29,11 @@ function ztest() {
     }
 
     if (sd == "") {
-        document.getElementById("warning").innerHTML += "standard deviation is empty <br/>";
+        document.getElementById("warning").innerHTML += "standard deviation of sample is empty <br/>";
         error = true;
     }
     else if (sd <= 0) {
-        document.getElementById("warning").innerHTML += "standard deviation is invalid <br/>";
+        document.getElementById("warning").innerHTML += "standard deviation of sample is invalid <br/>";
         error = true;
     }
 
@@ -81,7 +81,7 @@ function ztest() {
             pvalue = normalcdf(teststat);
         }
         else if (alt_hyp == "gt") {
-            pvalue = 1-normalcdf(teststat);
+            pvalue = 1 - normalcdf(teststat);
         }
         pvalue = Math.round(pvalue * Math.pow(10, 8)) / Math.pow(10, 8);
     }
