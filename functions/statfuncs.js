@@ -1,3 +1,5 @@
+const ROUNDING_PLACES = 4
+
 function normalcdf(x) {
 	var t = 1 / (1 + .2316419 * Math.abs(x));
 	var d = .3989423 * Math.exp(-x * x / 2);
@@ -5,5 +7,5 @@ function normalcdf(x) {
 	if (x > 0) {
 		area = 1 - area;
 	}
-	return area;
+	return Math.round(area * (10 ** ROUNDING_PLACES)) / (10 ** ROUNDING_PLACES);
 } 

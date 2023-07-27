@@ -1,35 +1,52 @@
 body {
-    font-size: 30px;
+    font-size: 2vw;
+}
+
+a {
+    font-size: 2vw;
 }
 
 header.test_name {
-    font-size: 80px;
+    font-size: 5vw;
 }
 
 header.section {
-    padding-top: 30px;
-    font-size: 30px;
+    padding-top: 2vw;
+    padding-bottom: 1vw;
+    font-size: 2.5vw;
     text-decoration: underline;
 }
 
+ul {
+    margin: 0;
+}
+
+input {
+    font-size: 1vw;
+}
+
+select {
+    font-size: 1vw;
+}
+
 .desc {
-    font-size: 30px;
+    font-size: 2vw;
 }
 
 ul.conditions {
-    font-size: 22px;
+    font-size: 1.5vw;
 }
 
 .variables {
-    font-size: 20px;
+    font-size: 1.5vw;
 }
 
 .output {
-    font-size: 24px;
+    font-size: 2vw;
 }
 
 .warning {
-    font-size: 20px;
+    font-size: 1.5vw;
     font-weight: bold;
     color: rgb(255, 106, 0);
 }

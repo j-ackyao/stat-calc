@@ -7,18 +7,18 @@
 
 <body>
     <header class="test_name">one-sample t-test for a population mean</header>
-    <div class="desc">this test is for a single categorical variable testing for a population mean, where the population standard deviation is unknown.</div>
-    <header class="section">Conditions</header>
+    <div class="desc">this test is for a single variable testing for a population mean, where the population standard deviation is unknown.</div>
+    <header class="section">conditions</header>
     <ul class="conditions">
-        <li>Data is from random sample</li>
-        <li>If sampling without replacement, sample size is less than 10% of population size: 10n &le; N, where n is sample size and N is population size</li>
-        <li>Sample size must be large enough to apply central limit theorem (CLT) (n &ge; 30 is generall acceptable) <br/> or <br/> Population distribution is approximately normal</li>
+        <li>random: data is from random sample</li>
+        <li>independence: if sampling without replacement, sample size is less than 10% of population size: 10n &le; N, where n is sample size and N is population size</li>
+        <li>sample size must be large enough to apply central limit theorem (CLT) (n &ge; 30 is generall acceptable) <br/> or <br/> Population distribution is approximately normal</li>
     </ul>
     <header class="section">Variables</header>
     <div class="variables">
         null hypothesis: &mu;<sub>0</sub> = <input type="number" id="hyp"> <br />
         sample mean: x&#772 = <input type="number" id="mean"> <br />
-        standard deviation of sample: Sx = <input type="number" id="sd"> <br />
+        sample standard deviation: s<sub>x&#772</sub> = <input type="number" id="sd"> <br />
         sample size: n = <input type="number" id="size"> <br />
         alternative hypothesis: &mu;<sub>a</sub>
         <input type="radio" name="ah" id="alt_hyp" value="ne">&ne; &mu;<sub>0</sub>

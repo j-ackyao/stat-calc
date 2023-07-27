@@ -6,34 +6,70 @@
 <html>
 
 <body>
-    <header class="test_name">one-sample z-test for a population proportion</header>
-    <div class="desc">this test is for a single categorical variable testing for a population proportion.</div>
-    <header class="section">Conditions</header>
+    <header class="test_name">one-sample z-test for a population mean</header>
+    <div class="desc">this test is for a single variable testing for a population mean</div>
+    <header class="section">conditions</header>
     <ul class="conditions">
-        <li>Data is from random sample</li>
-        <li>If sampling without replacement, sample size is less than 10% of population size: 10n &le; N, where n is sample size and N is population size</li>
-        <li>Sampling distribution of sample proportion is approximately normal: np<sub>0</sub> &ge; 10 and n(1-p<sub>0</sub>) &ge; 10, where p<sub>0</sub> is the true population proportion and assuming p = p<sub>0</sub>, </li>
+        <li>random: data is randomly sampled</li>
+        <li>independence: if sampling without replacement, sample size is less than 10% of population size</li>
+        <li>large sample size: conventionally, n &ge; 30; applying CLT, ensures that the sampling distribution of sample means is approximately normal</li>
     </ul>
-    <header class="section">Variables</header>
+    <header class="section">variables</header>
     <div class="variables">
-        null hypothesis: &mu;<sub>0</sub> = <input type="number" id="hyp"> <br />
-        standard deviation: &sigma; = <input type="number" id="sd"> <br />
-        sample mean: x&#772 = <input type="number" id="mean"> <br />
-        sample size: n = <input type="number" id="size"> <br />
+        null hypothesis: &mu;<sub>0</sub> = <input type="number" id="hyp_mean"> <br />
+        population standard deviation: &sigma; = <input type="number" id="sd_mean"> <br />
+        sample mean: x&#772 = <input type="number" id="mean_mean"> <br />
+        sample size: n = <input type="number" id="size_mean"> <br />
         alternative hypothesis: &mu;<sub>a</sub>
-        <input type="radio" name="ah" id="alt_hyp" value="ne">&ne; &mu;<sub>0</sub>
-        <input type="radio" name="ah" id="alt_hyp" value="lt">&lt; &mu;<sub>0</sub>
-        <input type="radio" name="ah" id="alt_hyp" value="gt">&gt; &mu;<sub>0</sub> <br /><br />
-
-        <button style="font-size:20px;width:100px" onclick="ztest()">Enter</button>
+                                    <select id="ah_mean">
+                                        <option value="ne">&ne;</option>
+                                        <option value="lt">&lt;</option>
+                                        <option value="gt">&gt;</option>
+                                    </select>
+        &mu;<sub>0</sub>
+        <br />
+        <button style="font-size:2vw" onclick="ztestmean()">calculate</button>
     </div>
-    <header class="section">Output</header>
+    <header class="section">output</header>
     <div class="output">
-        test statistic: z = <a id="teststat"></a> <br />
-        p-value: p = <a id="pvalue"></a> <br />
-        <div class="warning" id="warning"></div>
-
+        test statistic: z = <a id="teststat_mean"></a> <br />
+        p-value: p = <a id="pvalue_mean"></a> <br />
+        <div class="warning" id="warning_mean"></div>
     </div>
+
+</body>
+<br /><br />
+<body>
+    <header class="test_name">one-sample z-test for a population proportion</header>
+    <div class="desc">this test is for a single categorical variable testing for a population proportion</div>
+    <header class="section">conditions</header>
+    <ul class="conditions">
+        <li>random: data is randomly sampled</li>
+        <li>independence: if sampling without replacement, sample size is less than 10% of population size</li>
+        <li>large sample size: conventionally, number of successes np<sub>0</sub> and failures n(1 - p<sub>0</sub>) are greater than 10 respectively; ensures that the sampling distribution of sample proportion is approximately normal</li>
+    </ul>
+    <header class="section">variables</header>
+    <div class="variables">
+        null hypothesis: p<sub>0</sub> = <input type="number" id="hyp_prop"> <br />
+        sample proportion: p&#770 = <input type="number" id="mean_prop"> <br />
+        sample size: n = <input type="number" id="size_prop"> <br />
+        alternative hypothesis: p<sub>a</sub>
+        <select id="ah_prop">
+            <option value="ne">&ne;</option>
+            <option value="lt">&lt;</option>
+            <option value="gt">&gt;</option>
+        </select>
+        p<sub>0</sub>
+        <br />
+        <button style="font-size:2vw" onclick="ztestmean()">calculate</button>
+    </div>
+    <header class="section">output</header>
+    <div class="output">
+        test statistic: z = <a id="teststat_prop"></a> <br />
+        p-value: p = <a id="pvalue_prop"></a> <br />
+        <div class="warning" id="warning_prop"></div>
+    </div>
+
 </body>
 
 </html>
