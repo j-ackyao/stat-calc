@@ -29,6 +29,10 @@ select {
     font-size: 1vw;
 }
 
+canvas {
+    border: 0.2vw solid black;
+}
+
 .desc {
     font-size: 2vw;
 }

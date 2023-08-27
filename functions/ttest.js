@@ -1,10 +1,10 @@
 function ztest() {
-    var hyp = document.getElementById("hyp").value;
-    var sd = document.getElementById("sd").value;
-    var mean = document.getElementById("mean").value;
-    var size = document.getElementById("size").value;
-    var ah = document.getElementsByName("ah");
-    var alt_hyp = "";
+    const hyp = document.getElementById("hyp").value;
+    const sd = document.getElementById("sd").value;
+    const mean = document.getElementById("mean").value;
+    const size = document.getElementById("size").value;
+    const ah = document.getElementsByName("ah");
+    const alt_hyp = "";
 
     var teststat = "";
     var pvalue = "";

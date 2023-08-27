@@ -1,9 +1,12 @@
+const ROUND_DIGITS = 8;
+
+
 function ztestmean() {
-    var hyp = document.getElementById("hyp_mean").value;
-    var sd = document.getElementById("sd_mean").value;
-    var mean = document.getElementById("mean_mean").value;
-    var size = document.getElementById("size_mean").value;
-    var alt_hyp = document.getElementById("ah_mean").value;
+    const hyp = document.getElementById("hyp_mean").value;
+    const sd = document.getElementById("sd_mean").value;
+    const mean = document.getElementById("mean_mean").value;
+    const size = document.getElementById("size_mean").value;
+    const alt_hyp = document.getElementById("ah_mean").value;
 
 
     var teststat = "";
@@ -47,36 +50,44 @@ function ztestmean() {
         }
     }
 
-
-    if (!error) {
-        teststat = (mean - hyp) / (sd / Math.sqrt(size));
-
-        if (alt_hyp == "ne") {
-            if (teststat > 0) {
-                pvalue = (1 - normalcdf(teststat)) * 2;
-            }
-            else {
-                pvalue = (normalcdf(teststat)) * 2;
-            }
-        }
-        else if (alt_hyp == "lt") {
-            pvalue = normalcdf(teststat);
-        }
-        else if (alt_hyp == "gt") {
-            pvalue = 1-normalcdf(teststat);
-        }
-        pvalue = Math.round(pvalue * Math.pow(10, 8)) / Math.pow(10, 8);
+    if (error) {
+        return;
     }
+
+    teststat = (mean - hyp) / (sd / Math.sqrt(size));
+
+    if (alt_hyp == "ne") {
+        if (teststat > 0) {
+            pvalue = (1 - normcdf(teststat)) * 2;
+        }
+        else {
+            pvalue = (normcdf(teststat)) * 2;
+        }
+    }
+    else if (alt_hyp == "lt") {
+        pvalue = normcdf(teststat);
+    }
+    else if (alt_hyp == "gt") {
+        pvalue = 1 - normcdf(teststat);
+    }
+    pvalue = Math.round(pvalue * Math.pow(10, ROUND_DIGITS)) / Math.pow(10, ROUND_DIGITS);
+
 
     document.getElementById("teststat_mean").innerHTML = teststat;
     document.getElementById("pvalue_mean").innerHTML = pvalue;
+
+    var canvas = document.getElementById("mean_model");
+    canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+
+    drawnormmodel(canvas, Number(hyp), sd / Math.sqrt(size));
 }
 
+
 function ztestprop() {
-    var hyp = document.getElementById("hyp_prop").value;
-    var mean = document.getElementById("mean_prop").value;
-    var size = document.getElementById("size_prop").value;
-    var alt_hyp = document.getElementById("ah_prop").value;
+    const hyp = document.getElementById("hyp_prop").value;
+    const mean = document.getElementById("mean_prop").value;
+    const size = document.getElementById("size_prop").value;
+    const alt_hyp = document.getElementById("ah_prop").value;
 
 
     var teststat = "";
@@ -127,19 +138,19 @@ function ztestprop() {
 
         if (alt_hyp == "ne") {
             if (teststat > 0) {
-                pvalue = (1 - normalcdf(teststat)) * 2;
+                pvalue = (1 - normcdf(teststat)) * 2;
             }
             else {
-                pvalue = (normalcdf(teststat)) * 2;
+                pvalue = (normcdf(teststat)) * 2;
             }
         }
         else if (alt_hyp == "lt") {
-            pvalue = normalcdf(teststat);
+            pvalue = normcdf(teststat);
         }
         else if (alt_hyp == "gt") {
-            pvalue = 1-normalcdf(teststat);
+            pvalue = 1-normcdf(teststat);
         }
-        pvalue = Math.round(pvalue * Math.pow(10, 8)) / Math.pow(10, 8);
+        pvalue = Math.round(pvalue * Math.pow(10, ROUND_DIGITS)) / Math.pow(10, ROUND_DIGITS);
     }
 
     document.getElementById("teststat_prop").innerHTML = teststat;
