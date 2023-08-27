@@ -1,4 +1,4 @@
-const ROUND_DIGITS = 8;
+const ROUND_DIGITS = 6;
 
 
 function ztestmean() {
@@ -77,9 +77,7 @@ function ztestmean() {
     document.getElementById("pvalue_mean").innerHTML = pvalue;
 
     var canvas = document.getElementById("mean_model");
-    canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
-
-    drawnormmodel(canvas, Number(hyp), sd / Math.sqrt(size));
+    drawmodels(canvas, teststat, alt_hyp);
 }
 
 
