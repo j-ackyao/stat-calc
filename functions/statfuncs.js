@@ -40,8 +40,10 @@ const SCALE = 5;
 const LINE_WIDTH = 3 * SCALE;
 const H_SCALE = 0.2;
 const V_SCALE = 2;
-const NULL_COLOR = "#5e5e5e";
+const NULL_COLOR = "#555555";
 const ALT_COLOR = "#000000";
+const P_COLOR = "#FF0000";
+const P_ALPHA = 0.3;
 
 function drawmodels(canvas, test, alt_hyp) {
 
@@ -54,13 +56,15 @@ function drawmodels(canvas, test, alt_hyp) {
 
     context = canvas.getContext("2d");
     context.clearRect(0, 0, canvas.width, canvas.height);
-    drawmodel(canvas, 0, 1, NULL_COLOR);
-    drawmodel(canvas, test, 1, ALT_COLOR);
+
 
     // shade p value
     var dir = (alt_hyp == "lt") ? "left" : ((alt_hyp == "gt") ? "right" : "both");
-    console.log(dir);
-    fillmodel(canvas, 0, 1, test, dir, "rgba(255, 0, 0, 0.3)");
+    fillmodel(canvas, 0, 1, test, dir, P_COLOR, P_ALPHA);
+
+    // draw distributions
+    drawmodel(canvas, 0, 1, NULL_COLOR);
+    drawmodel(canvas, test, 1, ALT_COLOR);
 
     // draw axis
     context.lineWidth = LINE_WIDTH/2;
@@ -92,48 +96,53 @@ function drawmodel(canvas, mean, sd, color) {
 
     context.stroke();
 
-    // context.lineWidth = LINE_WIDTH / 2;
-    // context.moveTo(width / 2 + mean * H_SCALE * width / 2, height - Math.max.apply(null, density[1]) * V_SCALE * height - CANVAS_OFFSET);
-    // context.lineTo(width / 2 + mean * H_SCALE * width / 2, height - CANVAS_OFFSET);
-    // context.stroke();
     context.closePath();
-
-    // context.fillStyle = "rgba(255, 0, 0, 0.3)";
-    // context.fill();
 
 
 }
 
-function fillmodel(canvas, mean, sd, from, dir, color) {
+function fillmodel(canvas, mean, sd, from, dir, color, alpha) {
     const context = canvas.getContext("2d");
     const density = normd(mean, sd);
     const width = canvas.width;
     const height = canvas.height;
 
 
-    context.beginPath();
-
     context.moveTo(0, height - density[1][0] - CANVAS_OFFSET);
 
     if (dir == "left") {
+        context.beginPath();
         for (var i = 0; i < density[0].length; i++) {
             context.lineTo(width / 2 + density[0][i] * H_SCALE * width / 2, height - density[1][i] * V_SCALE * height - CANVAS_OFFSET);
             if (density[0][i] > from) {
                 break;
             }
         }
-    } else {
+    } else if (dir == "right") {
+        context.beginPath();
         for (var i = density[0].length - 1; i >= 0; i--) {
             context.lineTo(width / 2 + density[0][i] * H_SCALE * width / 2, height - density[1][i] * V_SCALE * height - CANVAS_OFFSET);
             if (density[0][i] < from) {
                 break;
             }
         }
+    } else {
+        if (from < mean) {
+            fillmodel(canvas, mean, sd, from, "left", color);
+            fillmodel(canvas, mean, sd, mean + (mean - from), "right", color);
+        } else {
+            fillmodel(canvas, mean, sd, from, "right", color);
+            fillmodel(canvas, mean, sd, mean + (mean - from), "left", color);
+        }
     }
 
     context.lineTo(width / 2 + from * H_SCALE * width / 2, height - CANVAS_OFFSET);
+
+    context.globalAlpha = P_ALPHA;
     context.fillStyle = color;
     context.fill();
+    context.globalAlpha = 1;
     context.closePath();
 
 }
+

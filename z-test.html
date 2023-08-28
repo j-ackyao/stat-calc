@@ -22,9 +22,9 @@
         sample size: n = <input type="number" id="size_mean"> <br />
         alternative hypothesis: &mu;<sub>a</sub>
                                     <select id="ah_mean">
-                                        <option value="ne">&ne;</option>
                                         <option value="lt">&lt;</option>
                                         <option value="gt">&gt;</option>
+                                        <option value="ne">&ne;</option>
                                     </select>
         &mu;<sub>0</sub>
         <br />
@@ -36,7 +36,7 @@
         p-value: p = <a id="pvalue_mean"></a> <br />
         <div class="warning" id="warning_mean"></div>
         <canvas id="mean_model"></canvas> <br />
-        <a style="font-size:1vw">*black (alt model) represents observed test statistic distribution compared to gray z distribution (null model)</a>
+                                          <a style="font-size:1.5vw">black: observed test statistic distribution (alt model) <br /> gray: z distribution (null model) <br /> pink: p-value</a>
     </div>
 
 </body>
@@ -56,14 +56,14 @@
         sample proportion: p&#770 = <input type="number" id="mean_prop"> <br />
         sample size: n = <input type="number" id="size_prop"> <br />
         alternative hypothesis: p<sub>a</sub>
-        <select id="ah_prop">
-            <option value="ne">&ne;</option>
-            <option value="lt">&lt;</option>
-            <option value="gt">&gt;</option>
-        </select>
+                                 <select id="ah_prop">
+                                     <option value="lt">&lt;</option>
+                                     <option value="gt">&gt;</option>
+                                     <option value="ne">&ne;</option>
+                                 </select>
         p<sub>0</sub>
         <br />
-        <button style="font-size:2vw" onclick="ztestmean()">calculate</button>
+        <button style="font-size:2vw" onclick="ztestprop()">calculate</button>
     </div>
     <header class="section">output</header>
     <div class="output">

@@ -153,4 +153,8 @@ function ztestprop() {
 
     document.getElementById("teststat_prop").innerHTML = teststat;
     document.getElementById("pvalue_prop").innerHTML = pvalue;
+
+
+    var canvas = document.getElementById("prop_model");
+    drawmodels(canvas, teststat, alt_hyp);
 }
