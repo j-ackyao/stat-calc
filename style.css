@@ -3,7 +3,7 @@ body {
 }
 
 a {
-    font-size: 2vw;
+    font-size: 1.5vw;
 }
 
 header.test_name {
@@ -48,7 +48,7 @@ ul.conditions {
 }
 
 .output {
-    font-size: 2vw;
+    font-size: 1.5vw;
 }
 
 .warning {

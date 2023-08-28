@@ -3,8 +3,33 @@
 <link rel="stylesheet" href="style.css">
 <script src="functions/ztest.js"></script>
 <script src="functions/statfuncs.js"></script>
-<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#shade_mean').on('change', function () {
+            if (this.value == "error") {
+                $("#error_mean").show();
+                ztestmean();
+            }
+            else {
+                $("#error_mean").hide();
+                ztestmean();
+            }
+        });
+        $('#shade_prop').on('change', function () {
+            if (this.value == "error") {
+                $("#error_prop").show();
+                ztestprop();
+            }
+            else {
+                $("#error_prop").hide();
+                ztestprop();
+            }
+        });
+    });
+</script>
 
+<html>
 <body>
     <header class="test_name">one-sample z-test for a population mean</header>
     <div class="desc">this test is for a single variable testing for a population mean</div>
@@ -21,27 +46,39 @@
         sample mean: x&#772 = <input type="number" id="mean_mean"> <br />
         sample size: n = <input type="number" id="size_mean"> <br />
         alternative hypothesis: &mu;<sub>a</sub>
-                                    <select id="ah_mean">
-                                        <option value="lt">&lt;</option>
-                                        <option value="gt">&gt;</option>
-                                        <option value="ne">&ne;</option>
-                                    </select>
+        <select id="ah_mean">
+            <option value="lt">&lt;</option>
+            <option value="gt">&gt;</option>
+            <option value="ne">&ne;</option>
+        </select>
         &mu;<sub>0</sub>
         <br />
+        significance level: <input type="number" id="sl_mean" value="0.05"> <br />
         <button style="font-size:2vw" onclick="ztestmean()">calculate</button>
     </div>
     <header class="section">output</header>
     <div class="output">
+        conclusion: <a id="conclusion_mean"></a> <br />
         test statistic: z = <a id="teststat_mean"></a> <br />
         p-value: p = <a id="pvalue_mean"></a> <br />
         <div class="warning" id="warning_mean"></div>
+        shade: <select id="shade_mean">
+            <option value="p">p-value</option>
+            <option value="error">errors</option>
+        </select>
+        <br />
         <canvas id="mean_model"></canvas> <br />
-                                          <a style="font-size:1.5vw">black: observed test statistic distribution (alt model) <br /> gray: z distribution (null model) <br /> pink: p-value</a>
+
+        <div id="error_mean" style="display:none">
+            green: type i error = <a id="typei_mean"></a> <br />
+            blue: type ii error = <a id="typeii_mean"></a> <br />
+        </div>
+
+        <a style="font-size:1vw">black: observed test statistic distribution (alt model) <br /> gray: z distribution (null model) <br /> pink: p-value</a>
     </div>
 
-</body>
-<br /><br />
-<body>
+    <br /><br />
+    
     <header class="test_name">one-sample z-test for a population proportion</header>
     <div class="desc">this test is for a single categorical variable testing for a population proportion</div>
     <header class="section">conditions</header>
@@ -56,21 +93,34 @@
         sample proportion: p&#770 = <input type="number" id="mean_prop"> <br />
         sample size: n = <input type="number" id="size_prop"> <br />
         alternative hypothesis: p<sub>a</sub>
-                                 <select id="ah_prop">
-                                     <option value="lt">&lt;</option>
-                                     <option value="gt">&gt;</option>
-                                     <option value="ne">&ne;</option>
-                                 </select>
+        <select id="ah_prop">
+            <option value="lt">&lt;</option>
+            <option value="gt">&gt;</option>
+            <option value="ne">&ne;</option>
+        </select>
         p<sub>0</sub>
         <br />
+        significance level: <input type="number" id="sl_prop" value="0.05"> <br />
         <button style="font-size:2vw" onclick="ztestprop()">calculate</button>
     </div>
     <header class="section">output</header>
     <div class="output">
+        conclusion: <a id="conclusion_prop"></a> <br />
         test statistic: z = <a id="teststat_prop"></a> <br />
         p-value: p = <a id="pvalue_prop"></a> <br />
         <div class="warning" id="warning_prop"></div>
-        <canvas id="prop_model"></canvas>
+        shade: <select id="shade_prop">
+            <option value="p">p-value</option>
+            <option value="error">errors</option>
+        </select>
+        <br />
+        <canvas id="prop_model"></canvas> <br />
+        <div id="error_prop" style="display:none">
+            green: type i error = <a id="typei_prop"></a> <br />
+            blue: type ii error = <a id="typeii_prop"></a> <br />
+        </div>
+        <a style="font-size:1vw">black: observed test statistic distribution (alt model) <br /> gray: z distribution (null model) <br /> pink: p-value</a>
+
     </div>
 
 </body>
